@@ -19,20 +19,6 @@ app = Flask(__name__)
 def hello_world():
     return render_template("index.html")
 
-@app.route('/contextget', methods=['GET']) 
-def contextget():
-    sql_query ="""SELECT * FROM employee WHERE name='Tim'"""
-    out = cur.execute(sql_query)
-    context_records = cur.fetchall() 
-    ContextRootKeys = []
-    outp ="Print each row and it's columns values"
-    for row in context_records:
-        ContextRootKeys.append(row[2])
-    
-    conn.commit()
-    print(ContextRootKeys[0])
-    return outp
-
 @app.route('/analytics/<id>', methods=['GET']) 
 def analytics(id):
     sql_query ="""SELECT * FROM employee WHERE location=%s"""
